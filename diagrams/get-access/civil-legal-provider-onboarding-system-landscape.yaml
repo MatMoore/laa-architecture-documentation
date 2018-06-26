@@ -1,0 +1,111 @@
+links:
+  The FC4 Framework: https://fundingcircle.github.io/fc4-framework/
+  Structurizr Express: https://structurizr.com/express
+---
+type: System Landscape
+scope: Onboarding Civil Legal Providers
+description: Describes the components related to onboarding civil legal providers to provide legal aid
+
+elements:
+- type: Person
+  name: Central Commissioning
+  position: '3125,850'
+- type: Person
+  name: Civil Legal Provider
+  tags: external
+  position: '1525,850'
+- type: Person
+  name: Head Office
+  description: Responsible for defining the legal aid contracts and requirements
+  position: '125,50'
+- type: Person
+  name: Unknown Bid Uploader
+  description: Responsible for uploading upcoming bids to tender verification
+  position: '2325,50'
+- type: Person
+  name: Unknown Contract Uploader
+  description: Responsible for uploading contracts and requirements to tender verification
+  position: '2325,550'
+- type: Software System
+  name: Consultation
+  tags: unknown
+  position: '800,100'
+- type: Software System
+  name: Contracted Work and Administration
+  description: (CWA)
+  position: '3900,900'
+- type: Software System
+  name: Selecting winning bids and contracts
+  tags: unknown
+  position: '3900,100'
+- type: Software System
+  name: Tender Verification
+  description: (TV in laa-apex) Matches requirements on contracts against bids
+  position: '3100,100'
+- type: Software System
+  name: Tendering Portal
+  description: (BRAVO) https://legalaid.bravosolution.co.uk/web/login.shtml
+  position: '1500,100'
+
+relationships:
+- source: Central Commissioning
+  description: Talks to
+  destination: Civil Legal Provider
+- source: Central Commissioning
+  description: Assesses requirements and uploads whether provider passes/fails them
+  destination: Tender Verification
+- source: Civil Legal Provider
+  description: Bids on contract
+  destination: Tendering Portal
+- source: Consultation
+  description: Final contract
+  destination: Tendering Portal
+- source: Consultation
+  description: Final contract
+  destination: Unknown Contract Uploader
+  vertices:
+  - '1000,750'
+- source: Head Office
+  description: Decides on contract policy
+  destination: Consultation
+- source: Selecting winning bids and contracts
+  description: somehow?
+  destination: Contracted Work and Administration
+- source: Tender Verification
+  description: somehow?
+  destination: Selecting winning bids and contracts
+- source: Unknown Bid Uploader
+  description: Uploads bids
+  destination: Tender Verification
+- source: Unknown Bid Uploader
+  description: Downloads bids
+  destination: Tendering Portal
+- source: Unknown Contract Uploader
+  description: Uploads contracts and bid requirements
+  destination: Tender Verification
+
+styles:
+- type: element
+  tag: Element
+  background: '#5a5c92'
+  color: '#ffffff'
+- type: element
+  tag: Person
+  shape: Person
+- type: element
+  tag: database
+  shape: Cylinder
+- type: element
+  tag: external
+  background: '#28a197'
+  color: '#ffffff'
+- type: element
+  tag: unknown
+  background: '#ff9339'
+  color: '#000000'
+  shape: Ellipse
+- type: element
+  tag: web
+  shape: WebBrowser
+
+size: A3_Landscape
